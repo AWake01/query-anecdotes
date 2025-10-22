@@ -14,7 +14,7 @@ export const createAnecdote = async (newAnecdote) => {
     console.log(newAnecdote)
 
      if(newAnecdote.content.length < 5) {
-        throw new Error('Anecdote must be 5 characters or more')
+        throw new Error('Anecdote length must be 5 characters or more')
      }
 
     const options = {
