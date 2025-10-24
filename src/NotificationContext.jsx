@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useContext } from 'react'
 
 const notificationReducer = (state, action) => {
     console.log('reducer')
@@ -29,5 +29,16 @@ export const NotifactionContextProvider = (props) => {
         </NotificationContext.Provider>
     )
 }    
+
+export const useShowNotification = () => {  //Notification timeout function implimented from published solution
+    const { notificationDispatch } = useContext(NotificationContext)
+
+    return (payload) => {
+        notificationDispatch({ type: 'SET', payload: payload })
+        setTimeout(() => {
+            notificationDispatch({ type: 'CLEAR' })
+        }, 5000)
+    }
+}
 
 export default NotificationContext
